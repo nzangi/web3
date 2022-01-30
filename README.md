@@ -1,10 +1,12 @@
 # web3
 1. Project Title
- 	PROJECT  DEALING  WITH BLOCKCHAIN/WEB3
+
+
+ 	        PROJECT  DEALING  WITH BLOCKCHAIN/WEB3
 
 2. Project Description
-     project intends to use the web3 technology, i.e blockchain. 
-A place where people can exchange their own digital currency.
+    -Project intends to use the web3 technology, i.e blockchain. 
+    -A place where people can exchange their own digital currency.
 
     Objectives
     1. people can perform a trade of their own currency

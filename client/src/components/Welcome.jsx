@@ -3,7 +3,8 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import {SiEthereum} from "react-icons/si";
 import {BsInfoCircle} from "react-icons/bs";
 import {Loader} from  "./";
-import {TransactionContext} from '../context/TransactionContext';
+import { TransactionContext } from '../context/TransactionContext';
+import { shortenAddress  } from '../utilis/shortenAddress';
 
 const Input = ({placeholder,name,type,value,handleChange}) => (
     <input
@@ -45,22 +46,23 @@ const Welcome = () => {
                             <p className="text-white  text-base font-semibold">Connect Wallet</p>
                         </button>)}
                     <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
-                        <div className={commonStyles}> 
+
+                        <div className={`rounded-tl-2xl ${commonStyles}`}>
                             Reliability
                         </div>
                         <div className={commonStyles}>
                             Security
                         </div>
-                        <div className={commonStyles}> 
+                        <div className={`sm:rounded-tr-2xl ${commonStyles}`}> 
                             Ethereum
                         </div>
-                        <div className={commonStyles}> 
+                        <div className={`sm:rounded-bl-2xl ${commonStyles}`}> 
                             Web 3.0
                         </div>
                          <div className={commonStyles}>
                             Low fees
                         </div>
-                         <div className={commonStyles}> 
+                         <div className={`rounded-br-2xl ${commonStyles}`}> 
                             Blockchain
                         </div>
                     </div>
@@ -76,7 +78,7 @@ const Welcome = () => {
                             </div>
                             <div >
                                 <p className = "text-white font-light text-sm">
-                                    Address
+                                    {shortenAddress(currentAccount)}
                                 </p>
                                 <p className = "text-white font-semibold text-lg mt-1">
                                     Ethereum

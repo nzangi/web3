@@ -1,15 +1,23 @@
-import React, {useEffect,useState} from 'react';
-import {ethers} from 'ethers';
-import { contractABI,contractAddress} from '../utilis/constants';
+import React, {useEffect,useState} from "react";
+import {ethers} from "ethers";
+import { contractABI,contractAddress} from "../utilis/constants";
 
 export const TransactionContext = React.createContext();
 
-const {ethereum} = window;
+const { ethereum} = window;
+
+    function display_alert(){
+        if (confirm("Please install a metaMask"));
+        window.open("https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en" ,'_blank');
+    };
 
 const getEthereumContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const transcactionContract = new ethers.Contract(contractAddress,contractABI,signer);
+
+    console.log({provider,signer,transcactionContract});
+
     return transcactionContract;
 };
 
@@ -27,7 +35,7 @@ export const TransactionProvider = ({children}) => {
     };
     const checkIfWalletIsConnected = async () => {
         try {
-            if(!ethereum) return alert("Please Install  a MetaMask");
+            if(!ethereum) return display_alert();
 
             const accounts = await ethereum.request({method: 'eth_accounts'});
             console.log(accounts);
@@ -49,7 +57,7 @@ export const TransactionProvider = ({children}) => {
 
     const connectWallet = async () => {
         try {
-            if(!ethereum) return alert("Please Install  a MetaMask");
+            if(!ethereum) return display_alert();
 
             const accounts = await ethereum.request({method:'eth_requestAccounts'});
 
@@ -66,7 +74,7 @@ export const TransactionProvider = ({children}) => {
             if(ethereum){
             //get data from the form..
             const {addressTo,amount,keyword,message} = formData;
-            const  transcactionContract =   getEthereumContract();
+            const  transcactionContract = getEthereumContract();
             const parsedAmount = ethers.utils.parseEther(amount);
 
             await ethereum.request({
@@ -81,15 +89,21 @@ export const TransactionProvider = ({children}) => {
 
             const transactionHash = await transcactionContract.addToBlockchain(addressTo,parsedAmount,message,keyword);
             setIsLoading(true);
-            console.log('Loading- ${transactionHash.hash}');
+            console.log(`LOADING - ${transactionHash.hash}`);
+            //console.log('Loading- ${transactionHash.hash}');
             await transactionHash.wait();
+            console.log(`SUCCESS - ${transactionHash.hash}`);
+            //console.log('Success- ${transactionHash.hash}');
             setIsLoading(false);
-            console.log("Success- ${transactionHash.hash}");
+
 
             const transactionCount = await transcactionContract.getTransactionCount();
             setTransactionCount(transactionCount.toNumber());
+
+            window.location.reload();
             
-            }else{
+            }
+            else{
                 console.log("No ethereum object");}
         }
         catch (error) {

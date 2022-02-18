@@ -3,8 +3,9 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import {SiEthereum} from "react-icons/si";
 import {BsInfoCircle} from "react-icons/bs";
 import {Loader} from  "./";
-import { TransactionContext } from '../context/TransactionContext';
+//import { TransactionContext } from '../context/TransactionContext';
 import { shortenAddress  } from '../utilis/shortenAddress';
+import { TransactionContext } from '../context/TransactionContext';
 
 const Input = ({placeholder,name,type,value,handleChange}) => (
     <input
@@ -18,7 +19,7 @@ const Input = ({placeholder,name,type,value,handleChange}) => (
 );
 const commonStyles="min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light  text-white";
 const Welcome = () => {
-    const {connectWallet,currentAccount,formData,sendTransaction,handleChange} = useContext(TransactionContext);
+    const {connectWallet,currentAccount,formData,sendTransaction,handleChange,isLoading} = useContext(TransactionContext);
     
     const handleSubmit = (e) => {
         const {addressTo,amount,keyword,message} = formData;
@@ -31,11 +32,11 @@ const Welcome = () => {
         <div className="flex w-full justify-center items-center">
             <div className="flex mf:flex-row flex-col items-start justify-between  md:p-20 py-12 px-4">
                 <div className="flex flex-1 justify-start flex-col mf:mr-10">
-                    <h1 className="text-3xl sm:text-5xl text-white  text-gradient py-1 ">
+                    <h1 className="text-3xl sm:text-5xl text-white  text-gradient py-1 font-bold ">
                         Send Crypto <br/> across the world
                     </h1>
                     <p className="text-left mt-4 text-white font-light md:w-9/12 w-11/12 text-base">
-                        Explore the Crypto World. Buy and Sell Cryptocurrencies easily on Krypto.
+                        Explore the Crypto World. Buy and Sell Cryptocurrencies easily on Bitcoin.
                     </p>
                     {!currentAccount && (
                         <button
@@ -96,7 +97,7 @@ const Welcome = () => {
                         <Input placeholder = "Enter Message" name = "message"  type = "text" handleChange = {handleChange}/>
 
                         <div className="h-[1px] w-full bg-gray-400 my-2"/>
-                        {false ? (
+                        {isLoading ? (
                             <Loader/>
                         )
                         :(

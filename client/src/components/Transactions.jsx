@@ -21,6 +21,7 @@ const TransactionCard = ({addressTo,addressFrom,timestamp,message,keyword,amount
                     <p className = "text-white text-base">AMOUNT:{amount} ETH </p>
                      {message && (
                          <>
+
                          <br/>
                          <p className = "text-white text-base">MESSAGE: {message}</p>
                          </>
@@ -28,31 +29,31 @@ const TransactionCard = ({addressTo,addressFrom,timestamp,message,keyword,amount
                      </div>
                      <img
                      src = {gifUrl || url}
-                     alt="gif"
+                     alt="nature"
                      className = "w-full h-64 2xl:h-96 rounded-md shadow-lg object-cover "
                      />
 
                      <div className = "bg-black p-3 px-5 w-max rounded-3xl -mt-5shadow-2xl">
-                         <p className = "text-[#37c7da] font-bold ">{timestamp}</p>
+                        <p className = "text-[#37c7da] font-bold ">{timestamp}</p>
                 </div>
 
             </div>
         </div>
     );
 }
-const Transaction = () => {
-    const {currentAccount} = useContext(TransactionContext);
+const Transactions = () => {
+    const {currentAccount,transactions} = useContext(TransactionContext);
     return(
         <div  className="flex w-full justify-center items-center 2xl:px-20  gradient-bg-transactions">
             <div className="flex flex-col  md:p-12  py-12 px-4">
                 {currentAccount ? (
-                    <h3 className="text-white text-3xl text-center my-2">Latest Transactions</h3>
+                    <h3 className="text-white text-3xl text-center my-2 font-bold">Latest Transactions</h3>
                 ):(
-                    <h3 className="text-white text-3xl text-center my-2"> Connect your Account to see the Latest Transaction</h3>
+                    <h3 className="text-white text-3xl text-center my-2 font-bold"> Connect your Account to see the Latest Transaction</h3>
                 )}
 
                     <div className="flex flex-wrap justify-center items-center mt-10">
-                        {dummyData.reverse().map((transaction, i) => (
+                        {transactions.reverse().map((transaction, i) => (
                             <TransactionCard key={i} {...transaction}/>
                         ))}
                     </div>
@@ -60,4 +61,4 @@ const Transaction = () => {
         </div>
     );
 }
-export default Transaction;
+export default Transactions;

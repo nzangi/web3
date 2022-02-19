@@ -2,7 +2,7 @@
 1. Project Title
 
 
- 	        PROJECT  DEALING  WITH BLOCKCHAIN/WEB3
+ 	        PROJECT  DEALING  WITH BLOCKCHAIN
 
 2. Project Description
     -Project intends to use the web3 technology, i.e blockchain. 
@@ -20,7 +20,7 @@
     -React project
 
 5. How to use the project.
-    -The project it is mainly for buying and selling of crypto coins.
+    -The project it is mainly for buying and selling of crypto coins across the globe. One can view the transactions which has made in the latest transactions page. All will be visible.
 
 
 

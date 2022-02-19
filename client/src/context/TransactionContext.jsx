@@ -53,11 +53,12 @@ export const TransactionProvider = ({children}) => {
                 timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
                 message: transaction.message,
                 keyword: transaction.keyword,
-                amount : parseInt(transaction.amount._hex) /10**18,
+                amount : parseInt(transaction.amount._hex) /(10**18),
             }));
 
             //console.log(structuredTransactions);
-            //setTransactions(structuredTransactions);
+            setTransactions(structuredTransactions);
+            //window.reload();
             window.reload();
             }
             else {
@@ -153,7 +154,7 @@ export const TransactionProvider = ({children}) => {
             const transactionCount = await transactionsContract.getTransactionCount();
             setTransactionCount(transactionCount.toNumber());
 
-            window.location.reload();
+            //window.location.reload();
             
             }
             else{

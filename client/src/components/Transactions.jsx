@@ -18,7 +18,7 @@ const TransactionCard = ({addressTo,addressFrom,timestamp,message,keyword,amount
                     <a href={`https://ropsten.etherscan.io/address/${addressTo}`} target="_blank" rel="noopener noreferrer">
                         <p className = "text-white text-base"> TO : {shortenAddress(addressTo)}</p>
                     </a>
-                    <p className = "text-white text-base">AMOUNT:{amount} ETH </p>
+                    <p className = "text-white text-base">AMOUNT: {amount} ETH </p>
                      {message && (
                          <>
 
@@ -40,9 +40,10 @@ const TransactionCard = ({addressTo,addressFrom,timestamp,message,keyword,amount
             </div>
         </div>
     );
-}
+};
 const Transactions = () => {
-    const {currentAccount,transactions} = useContext(TransactionContext);
+    const {transactions,currentAccount} = useContext(TransactionContext);
+    
     return(
         <div  className="flex w-full justify-center items-center 2xl:px-20  gradient-bg-transactions">
             <div className="flex flex-col  md:p-12  py-12 px-4">
@@ -52,13 +53,13 @@ const Transactions = () => {
                     <h3 className="text-white text-3xl text-center my-2 font-bold"> Connect your Account to see the Latest Transaction</h3>
                 )}
 
-                    <div className="flex flex-wrap justify-center items-center mt-10">
-                        {transactions.reverse().map((transaction, i) => (
-                            <TransactionCard key={i} {...transaction}/>
-                        ))}
-                    </div>
+                <div className="flex flex-wrap justify-center items-center mt-10">
+                    {[...transactions].reverse().map((transaction, i) => (
+                        <TransactionCard key={i} {...transaction}/>
+                    ))}
+                </div>
             </div>
         </div>
     );
-}
+};
 export default Transactions;

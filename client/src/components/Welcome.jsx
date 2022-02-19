@@ -11,7 +11,7 @@ const Input = ({placeholder,name,type,value,handleChange}) => (
     <input
      placeholder={placeholder}
      type={type}
-     step='0.0001'
+     step='0.00001'
      value = {value}
      onChange = {(e) => handleChange(e, name)}
      className = "my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
@@ -33,10 +33,10 @@ const Welcome = () => {
             <div className="flex mf:flex-row flex-col items-start justify-between  md:p-20 py-12 px-4">
                 <div className="flex flex-1 justify-start flex-col mf:mr-10">
                     <h1 className="text-3xl sm:text-5xl text-white  text-gradient py-1 font-bold ">
-                        Send Crypto <br/> across the world
+                        Send Cryptocurrencies <br/> across the world using @DigitalCoin.
                     </h1>
-                    <p className="text-left mt-4 text-white font-light md:w-9/12 w-11/12 text-base">
-                        Explore the Crypto World. Buy and Sell Cryptocurrencies easily on Bitcoin.
+                    <p className="text-left text-2xl mt-4 text-white font-light md:w-9/12 w-11/12 text-base">
+                        Explore the Cryptocurrencies World. Buy and Sell Cryptocurrencies easily on Bitcoin.
                     </p>
                     {!currentAccount && (
                         <button
@@ -46,9 +46,9 @@ const Welcome = () => {
                             >
                             <p className="text-white  text-base font-semibold">Connect Wallet</p>
                         </button>)}
-                    <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
+                    <div className=" font-bold grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
 
-                        <div className={`rounded-tl-2xl ${commonStyles}`}>
+                        <div className=  {`rounded-tl-2xl ${commonStyles}`}>
                             Reliability
                         </div>
                         <div className={commonStyles}>
